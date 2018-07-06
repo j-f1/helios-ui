@@ -1,21 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-class App extends Component {
+import NavLink from './NavLink'
+import BulletedNav from './BulletedNav'
+import Notifications from './notifications/'
+import Lists from './list/ListNav'
+import List from './list/'
+
+import './App.css'
+
+export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+      <Router>
+        <main>
+          <header>
+            <h1>Helios Frontend <sup><sup>&beta;</sup></sup></h1>
+            <BulletedNav
+              links={[
+                <NavLink to="/notifications">Notifications</NavLink>,
+                <NavLink to="/lists">Lists</NavLink>,
+              ]}
+            />
+          </header>
+          <Route exact path="/notifications" component={Notifications} />
+          <Route exact path="/lists" component={Lists} />
+          <Route path="/list/" component={Lists} />
+          <Route exact path="/list/:type" component={List} />
+        </main>
+      </Router>
+    )
   }
 }
-
-export default App;
