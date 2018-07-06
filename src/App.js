@@ -6,6 +6,7 @@ import BulletedNav from './BulletedNav'
 import Notifications from './notifications/'
 import Lists from './list/ListNav'
 import List from './list/'
+import Footer from './Footer'
 
 import './App.css'
 
@@ -23,10 +24,13 @@ export default class App extends Component {
               ]}
             />
           </header>
-          <Route exact path="/notifications" component={Notifications} />
-          <Route exact path="/lists" component={Lists} />
-          <Route path="/list/" component={Lists} />
-          <Route exact path="/list/:type" component={List} />
+          <div className="content">
+            <Route exact path="/notifications" component={Notifications} />
+            <Route exact path="/lists" component={Lists} />
+            <Route path="/list/" component={Lists} />
+            <Route exact path="/list/:type" component={List} />
+          </div>
+          <Footer />
         </main>
       </Router>
     )
