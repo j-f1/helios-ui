@@ -4,3 +4,4 @@ export default async function get(route) {
   const res = await fetch(API_ROOT + route)
   return res.json()
 }
+
