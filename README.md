@@ -5,6 +5,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+# TODOS:
+
+- [ ] Fetch the logged-in user’s network ID on all three servers
+- [ ] Show the logged-in user’s notifications in a separate section
+- [ ] Allow the user to add and remove their own notifications (https://helios-ui-backend.glitch.me)
+- [ ] Add blacklist support
+
 ## Remixing in Glitch
 
 To make the auto-reload feature work, edit the `proxy` option in `package.json` to point to your Glitch app.
