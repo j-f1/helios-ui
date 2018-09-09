@@ -24,3 +24,5 @@ yarn-error.log*
 
 .glitch-assets
 .now
+.lesshst
+.nano
