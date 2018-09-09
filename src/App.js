@@ -8,6 +8,8 @@ import Lists from './list/ListNav'
 import List from './list/'
 import Footer from './Footer'
 
+import { Provider } from  './token-context'
+
 import './App.css'
 
 export default class App extends Component {
@@ -35,33 +37,35 @@ export default class App extends Component {
   }
   render() {
     return (
-      <Router>
-        <main>
-          <header>
-            <h1>
-              Helios Frontend <sup><sup>&beta;</sup></sup>
-              {this.state.token ? (
-                <button onClick={this.logOut}>Log Out</button>
-              ) : (
-                <button onClick={this.logIn}>Log In</button>
-              )}
-            </h1>
-            <BulletedNav
-              links={[
-                <NavLink to="/notifications">Notifications</NavLink>,
-                <NavLink to="/lists">Lists</NavLink>,
-              ]}
-            />
-          </header>
-          <div className="content">
-            <Route exact path="/notifications" component={Notifications} />
-            <Route exact path="/lists" component={Lists} />
-            <Route path="/list/" component={Lists} />
-            <Route exact path="/list/:type" component={List} />
-          </div>
-          <Footer />
-        </main>
-      </Router>
+      <Provider value={this.state.token}>
+        <Router>
+          <main>
+            <header>
+              <h1>
+                Helios Frontend <sup><sup>&beta;</sup></sup>
+                {this.state.token ? (
+                  <button onClick={this.logOut}>Log Out</button>
+                ) : (
+                  <button onClick={this.logIn}>Log In</button>
+                )}
+              </h1>
+              <BulletedNav
+                links={[
+                  <NavLink to="/notifications">Notifications</NavLink>,
+                  <NavLink to="/lists">Lists</NavLink>,
+                ]}
+              />
+            </header>
+            <div className="content">
+              <Route exact path="/notifications" component={Notifications} />
+              <Route exact path="/lists" component={Lists} />
+              <Route path="/list/" component={Lists} />
+              <Route exact path="/list/:type" component={List} />
+            </div>
+            <Footer />
+          </main>
+        </Router>
+      </Provider>
     )
   }
 }
