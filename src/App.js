@@ -11,12 +11,41 @@ import Footer from './Footer'
 import './App.css'
 
 export default class App extends Component {
+  constructor(props) {
+    super(props)
+    this.logIn = this.logIn.bind(this)
+    this.logOut = this.logOut.bind(this)
+    this.state = { token: localStorage.seToken || null }
+  }
+  logIn() {
+    const origin = location.protocol + '//' + location.host
+    window.open('https://stackoverflow.com/oauth/dialog?client_id=13058&scope=&redirect_uri=' + origin + '/login.html')
+    window.addEventListener('message', event => {
+      if (event.origin === origin) {
+        const token = String(event.data)
+        localStorage.seToken = token
+        this.setState({ token })
+        event.source.close()
+      }
+    }, { once: true })
+  }
+  logOut() {
+    delete localStorage.seToken
+    this.setState({ token: null })
+  }
   render() {
     return (
       <Router>
         <main>
           <header>
-            <h1>Helios Frontend <sup><sup>&beta;</sup></sup></h1>
+            <h1>
+              Helios Frontend <sup><sup>&beta;</sup></sup>
+              {this.state.token ? (
+                <button onClick={this.logOut}>Log Out</button>
+              ) : (
+                <button onClick={this.logIn}>Log In</button>
+              )}
+            </h1>
             <BulletedNav
               links={[
                 <NavLink to="/notifications">Notifications</NavLink>,
