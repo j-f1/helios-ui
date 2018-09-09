@@ -4,6 +4,7 @@ dependencies:
   react-dom: 16.5.0
   react-router-dom: 4.3.1
 devDependencies:
+  prettier: 1.14.2
   react-scripts: 0.9.5
 packages:
   /abab/1.0.4:
@@ -4655,6 +4656,13 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-gV7R9uvGWSb4ZbMQwHE7yzMVzks=
+  /prettier/1.14.2:
+    dev: true
+    engines:
+      node: '>=4'
+    hasBin: true
+    resolution:
+      integrity: sha512-McHPg0n1pIke+A/4VcaS2en+pTNjy4xF+Uuq86u/5dyDO59/TtFZtQ708QIRkEZ3qwKz3GVkVa6mpxK/CpB8Rg==
   /pretty-error/2.1.1:
     dependencies:
       renderkid: 2.0.1
@@ -6240,6 +6248,7 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   create-react-app: ^1.5.2
+  prettier: ^1.14.2
   react: ^16.5.0
   react-dom: ^16.5.0
   react-router-dom: ^4.3.1

@@ -10,6 +10,7 @@
   },
   "proxy": "https://helios-ui.glitch.me",
   "devDependencies": {
+    "prettier": "^1.14.2",
     "react-scripts": "0.9.5"
   },
   "engines": {
@@ -19,6 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "lint": "prettier 'src/**/*{js,css}' --list-different",
     "eject": "react-scripts eject"
   },
   "license": "MIT"

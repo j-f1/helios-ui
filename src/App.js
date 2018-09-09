@@ -8,7 +8,7 @@ import Lists from './list/ListNav'
 import List from './list/'
 import Footer from './Footer'
 
-import { Provider } from  './token-context'
+import { Provider } from './token-context'
 
 import './App.css'
 
@@ -21,15 +21,23 @@ export default class App extends Component {
   }
   logIn() {
     const origin = location.protocol + '//' + location.host
-    window.open('https://stackoverflow.com/oauth/dialog?client_id=13058&scope=&redirect_uri=' + origin + '/login.html')
-    window.addEventListener('message', event => {
-      if (event.origin === origin) {
-        const token = String(event.data)
-        localStorage.seToken = token
-        this.setState({ token })
-        event.source.close()
-      }
-    }, { once: true })
+    window.open(
+      'https://stackoverflow.com/oauth/dialog?client_id=13058&scope=&redirect_uri=' +
+        origin +
+        '/login.html',
+    )
+    window.addEventListener(
+      'message',
+      event => {
+        if (event.origin === origin) {
+          const token = String(event.data)
+          localStorage.seToken = token
+          this.setState({ token })
+          event.source.close()
+        }
+      },
+      { once: true },
+    )
   }
   logOut() {
     delete localStorage.seToken
@@ -42,7 +50,10 @@ export default class App extends Component {
           <main>
             <header>
               <h1>
-                Helios Frontend <sup><sup>&beta;</sup></sup>
+                Helios Frontend{' '}
+                <sup>
+                  <sup>&beta;</sup>
+                </sup>
                 {this.state.token ? (
                   <button onClick={this.logOut}>Log Out</button>
                 ) : (
