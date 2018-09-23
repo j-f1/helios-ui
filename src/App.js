@@ -32,18 +32,24 @@ export default class App extends Component {
           localStorage.seToken = token
           this.setState({ token })
           event.source.close()
+
+          this.loadUser(token).catch(console.error)
         }
       },
       { once: true },
     )
   }
+  async loadUser(token) {
+    const res = await fetch(`https://api.stackexchange.com/2.2/access-tokens/${token}?key=${process.env.REACT_APP_KEY}&access_token=${token}`)
+    this.setState({ tokenInfo: await res.json().items[0] })
+  }
   logOut() {
     delete localStorage.seToken
-    this.setState({ token: null })
+    this.setState({ token: null, tokenInfo: null })
   }
   render() {
     return (
-      <Provider value={this.state.token}>
+      <Provider value={{ token: this.state.token, tokenInfo: this.state.tokenInfo }}>
         <Router>
           <main>
             <header>

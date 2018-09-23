@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import get from '../api'
+import { Consumer } from '../token-context'
 
-export default class Notifications extends Component {
+export default props => <Consumer>{value => <Notifications {...props} {...value} />}</Consumer>
+
+class Notifications extends Component {
   state = {
     loading: true,
   }
