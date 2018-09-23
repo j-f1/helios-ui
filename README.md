@@ -8,7 +8,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 # TODOS:
 
 - [x] Fetch the logged-in user’s network ID on all three servers
-- [ ] Show the logged-in user’s notifications in a separate section
+- [x] Show the logged-in user’s notifications in a separate section
 - [ ] Allow the user to add and remove their own notifications (https://helios-ui-backend.glitch.me)
 - [ ] Add blacklist support
 
