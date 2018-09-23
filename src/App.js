@@ -9,6 +9,7 @@ import List from './list/'
 import Footer from './Footer'
 
 import { Provider } from './token-context'
+import { fetchJSON } from './utils'
 
 import './App.css'
 
@@ -17,7 +18,12 @@ export default class App extends Component {
     super(props)
     this.logIn = this.logIn.bind(this)
     this.logOut = this.logOut.bind(this)
-    this.state = { token: localStorage.seToken || null }
+    this.state = { token: localStorage.seToken || null, tokenInfo: null, chatAccounts: [] }
+  }
+  componentDidMount() {
+    if (this.state.token) {
+      this.loadUser(this.state.token).catch(console.error)
+    }
   }
   logIn() {
     const origin = location.protocol + '//' + location.host
@@ -40,16 +46,18 @@ export default class App extends Component {
     )
   }
   async loadUser(token) {
-    const res = await fetch(`https://api.stackexchange.com/2.2/access-tokens/${token}?key=${process.env.REACT_APP_KEY}&access_token=${token}`)
-    this.setState({ tokenInfo: await res.json().items[0] })
+    const { items: [ tokenInfo ] } = await fetchJSON(`https://api.stackexchange.com/2.2/access-tokens/${token}?key=${process.env.REACT_APP_KEY}&access_token=${token}`)
+    this.setState({ tokenInfo })
+    const chatAccounts = await fetchJSON(`https://helios-ui-backend.glitch.me/user/${tokenInfo.account_id}/chat-accounts`)
+    this.setState({ chatAccounts })
   }
   logOut() {
     delete localStorage.seToken
-    this.setState({ token: null, tokenInfo: null })
+    this.setState({ token: null, tokenInfo: null, chatAccounts: [] })
   }
   render() {
     return (
-      <Provider value={{ token: this.state.token, tokenInfo: this.state.tokenInfo }}>
+      <Provider value={{ token: this.state.token, tokenInfo: this.state.tokenInfo, chatAccounts: this.state.chatAccounts }}>
         <Router>
           <main>
             <header>
