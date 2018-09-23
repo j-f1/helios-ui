@@ -43,11 +43,11 @@ class Notifications extends Component {
               </ul>
             </section>
           ) : null}
-          {other.length && (
+          {other.length ? (
             <section>
               <h2>Other notifications</h2>
               <ul>
-                {mine.map((n, i) => {
+                {other.map((n, i) => {
                   return (
                     <li key={i}>
                       User #{n.user_id} in room #{n.room_id} on {n.server} for {n.site}
@@ -56,7 +56,7 @@ class Notifications extends Component {
                 })}
               </ul>
             </section>
-          )}
+          ) : null}
         </div>
       )
     }
