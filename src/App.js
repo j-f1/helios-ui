@@ -22,9 +22,7 @@ export default class App extends Component {
   logIn() {
     const origin = location.protocol + '//' + location.host
     window.open(
-      'https://stackoverflow.com/oauth/dialog?client_id=13058&scope=&redirect_uri=' +
-        origin +
-        '/login.html',
+      `https://stackoverflow.com/oauth/dialog?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=&redirect_uri=${origin}/login.html`,
     )
     window.addEventListener(
       'message',
