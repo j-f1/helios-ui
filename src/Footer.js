@@ -11,7 +11,7 @@ export default () => (
     <BulletedNav
       links={[
         <Link href="https://helios-ui.glitch.me">dev</Link>,
-        <Link href="https://nifty-poitras-7db319.netlify.com/">prod</Link>,
+        <Link href="https://helios-ui.netlify.com">prod</Link>,
       ]}
     />
   </footer>

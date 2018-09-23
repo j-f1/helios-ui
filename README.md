@@ -1,4 +1,4 @@
-<https://helios-ui.glitch.me> is the **development** version. The **production** version is at <https://nifty-poitras-7db319.netlify.com/>
+<https://helios-ui.glitch.me> is the **development** version. The **production** version is at <https://helios-ui.netlify.com/>
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
