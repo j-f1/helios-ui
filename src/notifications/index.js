@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import get from '../api'
 import { Consumer } from '../token-context'
 
-export default props => <Consumer>{value => <Notifications {...props} {...value} />}</Consumer>
+export default props => (
+  <Consumer>{value => <Notifications {...props} {...value} />}</Consumer>
+)
 
 class Notifications extends Component {
   state = {
@@ -22,11 +24,16 @@ class Notifications extends Component {
     if (this.state.loading) {
       return <p>Loading...</p>
     } else {
-      const { mine, other } = this.state.notifications.reduce((state, n) => {
-        const isMine = this.props.chatAccounts.find(account => account.id === n.user_id && account.server === n.server)
-        ;(isMine ? state.mine : state.other).push(n)
-        return state
-      }, { mine: [], other: [] })
+      const { mine, other } = this.state.notifications.reduce(
+        (state, n) => {
+          const isMine = this.props.chatAccounts.find(
+            account => account.id === n.user_id && account.server === n.server,
+          )
+          ;(isMine ? state.mine : state.other).push(n)
+          return state
+        },
+        { mine: [], other: [] },
+      )
       return (
         <div>
           {mine.length ? (
@@ -50,7 +57,8 @@ class Notifications extends Component {
                 {other.map((n, i) => {
                   return (
                     <li key={i}>
-                      User #{n.user_id} in room #{n.room_id} on {n.server} for {n.site}
+                      User #{n.user_id} in room #{n.room_id} on {n.server} for{' '}
+                      {n.site}
                     </li>
                   )
                 })}
