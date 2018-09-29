@@ -9,7 +9,7 @@ import List from './list/'
 import Footer from './Footer'
 
 import { Provider } from './token-context'
-import { fetchJSON } from './utils'
+import { se, backend } from './api'
 
 import './App.css'
 
@@ -54,16 +54,10 @@ export default class App extends Component {
   async loadUser(token) {
     const {
       items: [tokenInfo],
-    } = await fetchJSON(
-      `https://api.stackexchange.com/2.2/access-tokens/${token}?key=${
-        process.env.REACT_APP_KEY
-      }&access_token=${token}`,
-    )
+    } = await se(`access-tokens/${token}?access_token=${token}`)
     this.setState({ tokenInfo })
-    const chatAccounts = await fetchJSON(
-      `https://helios-ui-backend.glitch.me/user/${
-        tokenInfo.account_id
-      }/chat-accounts`,
+    const chatAccounts = await backend(
+      `user/${tokenInfo.account_id}/chat-accounts`,
     )
     this.setState({ chatAccounts })
   }

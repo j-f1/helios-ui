@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import get from '../api'
+import { helios } from '../api'
 import { Consumer } from '../token-context'
 
 export default props => (
@@ -14,7 +14,7 @@ class Notifications extends Component {
     this.loadData().catch(err => console.log(err))
   }
   async loadData() {
-    const response = await get('/notifications')
+    const response = await helios('notifications')
     this.setState({
       loading: false,
       notifications: response.items,

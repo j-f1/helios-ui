@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import get from '../api'
+import { helios } from '../api'
 
 export default class List extends Component {
   state = {
@@ -15,7 +15,7 @@ export default class List extends Component {
     }
   }
   async loadData() {
-    const { items } = await get('/blacklists/' + this.props.match.params.type)
+    const { items } = await helios('blacklists/' + this.props.match.params.type)
     this.setState({
       loading: false,
       items,
