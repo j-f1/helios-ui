@@ -21,6 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "lint": "prettier 'src/**/*{js,css}' --list-different",
+    "fix": "prettier 'src/**/*{js,css}' --write",
     "eject": "react-scripts eject"
   },
   "license": "MIT"
